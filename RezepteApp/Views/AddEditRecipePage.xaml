@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:RezepteApp.ViewModels"
+             x:Class="RezepteApp.Views.AddEditRecipePage"
+             x:DataType="viewmodels:AddEditRecipeViewModel"
+             Title="{Binding IsEditMode, Converter={StaticResource EditModeTitleConverter}}"
+             BackgroundColor="#FFFBFC">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <!-- Name -->
+            <Label Text="Rezeptname*" FontAttributes="Bold"/>
+            <Entry Text="{Binding Name}" Placeholder="z.B. Spaghetti Carbonara"/>
+
+            <!-- Description -->
+            <Label Text="Beschreibung" FontAttributes="Bold"/>
+            <Editor Text="{Binding Description}" 
+                    Placeholder="Kurze Beschreibung des Rezepts"
+                    HeightRequest="100"/>
+
+            <!-- Category and Difficulty -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <StackLayout Grid.Column="0">
+                    <Label Text="Kategorie*" FontAttributes="Bold"/>
+                    <Picker ItemsSource="{Binding Categories}"
+                            SelectedItem="{Binding SelectedCategory}"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <Label Text="Schwierigkeit*" FontAttributes="Bold"/>
+                    <Picker ItemsSource="{Binding Difficulties}"
+                            SelectedItem="{Binding SelectedDifficulty}"/>
+                </StackLayout>
+            </Grid>
+
+            <!-- Times and Servings -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <StackLayout Grid.Column="0">
+                    <Label Text="Vorb. (Min)" FontAttributes="Bold"/>
+                    <Entry Text="{Binding PrepTime}" Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <Label Text="Koch (Min)" FontAttributes="Bold"/>
+                    <Entry Text="{Binding CookingTime}" Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2">
+                    <Label Text="Portionen" FontAttributes="Bold"/>
+                    <Entry Text="{Binding Servings}" Keyboard="Numeric"/>
+                </StackLayout>
+            </Grid>
+
+            <!-- Ingredients -->
+            <Label Text="Zutaten*" FontAttributes="Bold"/>
+            <CollectionView ItemsSource="{Binding Ingredients}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="2*,*,*,Auto" ColumnSpacing="5" Margin="0,5">
+                            <Entry Grid.Column="0" Text="{Binding Name}" Placeholder="Zutat"/>
+                            <Entry Grid.Column="1" Text="{Binding Amount}" Placeholder="Menge" Keyboard="Numeric"/>
+                            <Entry Grid.Column="2" Text="{Binding Unit}" Placeholder="Einheit"/>
+                            <Button Grid.Column="3" Text="✕" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:AddEditRecipeViewModel}}, Path=RemoveIngredientCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="#FF6B6B"
+                                    TextColor="White"
+                                    Padding="8,4"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="+ Zutat hinzufügen" 
+                    Command="{Binding AddIngredientCommand}"
+                    BackgroundColor="#2ECC71"/>
+
+            <!-- Instructions -->
+            <Label Text="Zubereitung*" FontAttributes="Bold"/>
+            <Editor Text="{Binding Instructions}" 
+                    Placeholder="Schritt für Schritt Anleitung"
+                    HeightRequest="150"/>
+
+            <!-- Nutritional Info -->
+            <Label Text="Nährwerte (pro Portion)" FontAttributes="Bold"/>
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+                <StackLayout Grid.Column="0">
+                    <Label Text="Kalorien" FontSize="12"/>
+                    <Entry Text="{Binding Calories}" Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <Label Text="Protein (g)" FontSize="12"/>
+                    <Entry Text="{Binding Protein}" Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2">
+                    <Label Text="Kohlenh. (g)" FontSize="12"/>
+                    <Entry Text="{Binding Carbohydrates}" Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Grid.Column="3">
+                    <Label Text="Fett (g)" FontSize="12"/>
+                    <Entry Text="{Binding Fat}" Keyboard="Numeric"/>
+                </StackLayout>
+            </Grid>
+
+            <!-- Action Buttons -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,20,0,0">
+                <Button Grid.Column="0"
+                        Text="Speichern"
+                        Command="{Binding SaveRecipeCommand}"
+                        BackgroundColor="#2ECC71"/>
+                <Button Grid.Column="1"
+                        Text="Abbrechen"
+                        Command="{Binding CancelCommand}"
+                        BackgroundColor="#95A5A6"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

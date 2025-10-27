@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
+
+    <!-- Freundliches Farbschema für Rezepte-App - Soft Pastels -->
+    <!-- Primärfarben - Rosa/Peach Palette -->
+    <Color x:Key="Primary">#FF6B82</Color>
+    <Color x:Key="PrimaryDark">#E85570</Color>
+    <Color x:Key="PrimaryDarkText">#FF0E0808</Color>
+    <Color x:Key="Secondary">#FFD8A8</Color>
+    <Color x:Key="SecondaryDarkText">#7A6F00</Color>
+    <Color x:Key="Tertiary">#E8C4F0</Color>
+
+    <!-- Card Background Colors - Soft Pastels -->
+    <Color x:Key="CardPink">#FFD4DC</Color>
+    <Color x:Key="CardPeach">#FFE5CC</Color>
+    <Color x:Key="CardLavender">#E8D9F0</Color>
+    <Color x:Key="CardBeige">#FFF5E6</Color>
+    <Color x:Key="CardYellow">#FFF9E6</Color>
+    <Color x:Key="CardMint">#E8F8F0</Color>
+    <Color x:Key="CardBlush">#FFE8E8</Color>
+
+    <!-- Akzentfarben für verschiedene Kategorien -->
+    <Color x:Key="AccentCoral">#FF8B94</Color>
+    <Color x:Key="AccentPeach">#FFAA85</Color>
+    <Color x:Key="AccentLavender">#C9A9E6</Color>
+    <Color x:Key="AccentMint">#B8E6D5</Color>
+    <Color x:Key="AccentBlue">#A8DADC</Color>
+    <Color x:Key="AccentPink">#FFB6C1</Color>
+    <Color x:Key="AccentOrange">#FFB347</Color>
+    <Color x:Key="AccentPurple">#DDA0DD</Color>
+    
+    <!-- Favoriten-Farbe -->
+    <Color x:Key="FavoriteRed">#FF4757</Color>
+    
+    <!-- Erfolgs- und Warnfarben -->
+    <Color x:Key="SuccessGreen">#2ECC71</Color>
+    <Color x:Key="WarningOrange">#F39C12</Color>
+    <Color x:Key="ErrorRed">#E74C3C</Color>
+
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Magenta">#FF6B9D</Color>
+    <Color x:Key="MidnightBlue">#2C3E50</Color>
+    <Color x:Key="OffBlack">#2C3E50</Color>
+
+    <!-- Aufgehellte Grautöne für freundlichere UI -->
+    <Color x:Key="Gray100">#FFF5F7</Color>
+    <Color x:Key="Gray200">#F8E8EC</Color>
+    <Color x:Key="Gray300">#E9DADF</Color>
+    <Color x:Key="Gray400">#D4C5CA</Color>
+    <Color x:Key="Gray500">#9B9B9B</Color>
+    <Color x:Key="Gray600">#757575</Color>
+    <Color x:Key="Gray900">#4A4A4A</Color>
+    <Color x:Key="Gray950">#2D2D2D</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+</ResourceDictionary>

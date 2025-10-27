@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:RezepteApp.ViewModels"
+             xmlns:models="clr-namespace:RezepteApp.Models"
+             x:Class="RezepteApp.Views.ShoppingListPage"
+             x:DataType="viewmodels:ShoppingListViewModel"
+             Title="Einkaufsliste"
+             BackgroundColor="#FFFBFC">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="10">
+        <!-- Add Item Section -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" ColumnSpacing="10" Margin="0,0,0,10">
+            <Entry Grid.Column="0"
+                   Text="{Binding NewItemName}"
+                   Placeholder="Neuer Artikel..."
+                   ReturnCommand="{Binding AddItemCommand}"/>
+            <Button Grid.Column="1"
+                    Text="+"
+                    Command="{Binding AddItemCommand}"
+                    WidthRequest="50"/>
+        </Grid>
+
+        <!-- Shopping List -->
+        <RefreshView Grid.Row="1"
+                     IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}">
+            <CollectionView ItemsSource="{Binding ShoppingList}">
+                <CollectionView.EmptyView>
+                    <Label Text="Keine Artikel in der Einkaufsliste"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="Gray"/>
+                </CollectionView.EmptyView>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ShoppingListItem">
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Löschen"
+                                              BackgroundColor="Red"
+                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ShoppingListViewModel}}, Path=DeleteItemCommand}"
+                                              CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            
+                            <Border Margin="0,5" Padding="10" BackgroundColor="White" StrokeThickness="1" Stroke="#E0E0E0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <CheckBox Grid.Column="0"
+                                             IsChecked="{Binding IsChecked}"
+                                             CheckedChanged="OnCheckBoxCheckedChanged"/>
+                                    <Label Grid.Column="1"
+                                           Text="{Binding DisplayText}"
+                                           VerticalOptions="Center"
+                                           Margin="10,0,0,0"
+                                           TextDecorations="{Binding IsChecked, Converter={StaticResource CheckedToStrikethroughConverter}}"/>
+                                    <Button Grid.Column="2"
+                                            Text="🗑️"
+                                            FontSize="18"
+                                            BackgroundColor="Transparent"
+                                            TextColor="Red"
+                                            WidthRequest="40"
+                                            HeightRequest="40"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ShoppingListViewModel}}, Path=DeleteItemCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <!-- Clear Button -->
+        <Button Grid.Row="2"
+                Text="Erledigte Artikel löschen"
+                Command="{Binding ClearCheckedItemsCommand}"
+                BackgroundColor="#4ECDC4"
+                Margin="0,10,0,0"/>
+    </Grid>
+
+</ContentPage>
